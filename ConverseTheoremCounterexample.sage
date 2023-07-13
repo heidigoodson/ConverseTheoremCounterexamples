@@ -52,7 +52,8 @@ def gammafactor(q,nu_power,omega_power):
     ordernu=Integer(coprime_m/gcd(coprime_m,nu_power)) #order of the root of unity that the generator maps to under nu
     orderomega=Integer(coprime_n/gcd(coprime_n,omega_power)) #order of the root of unity that the generator maps to under nu
     f=nu^(Integer(m/2)) #this is the constant nu(-1)
-    gf=f * sum((nuchar^(mod(k,ordernu)))*(omegachar^(mod(k,orderomega)))*(psi^((w^k+w^(q*k)).to_integer())) for k in [0..m-1])
+    #gf=f * sum((nuchar^(mod(k,ordernu)))*(omegachar^(mod(k,orderomega)))*(psi^((w^k+w^(q*k)).to_integer())) for k in [0..m-1])
+    gf=f * sum((nuchar^(mod(k,ordernu)))*(omegachar^(mod(k,orderomega)))*(psi^(Integer(w^k+w^(q*k)))) for k in [0..m-1])
     return gf
 
 def gammafactorarray(q): #returns an array of gamma factors. One row for each cuspidal, one column for each character of F_q*
@@ -99,4 +100,3 @@ def iscounterexample(q):
     print("")
     print("For ell=",ell,"and q=",q," the duplicate gamma factors are the following:")
     print(duplicates)
-    
